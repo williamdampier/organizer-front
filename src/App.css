@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+:root {
+    --header-font: 'IBM Plex Serif', serif;
+    --common-font: 'Lobster';
+    --body-color: #A2D2FF;
+    --primary-color: #FEF9EF;
+    --secondary-color: #FF865E;
+    --footer-color: #FEE440;
+}
+
+
+
+body {
+    background-color: var(--body-color);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
+header {
+   
+    padding: 5px;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    font-family: var(--header-font);
+  }
+
+ h2 {
+    font-family: 'Gwendolyn', cursive;
+  }
+  
+.logo {
+    width: 32px;
+    margin-right: 10px;
+    
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Category = props => {
     return (
@@ -9,8 +8,5 @@ const Category = props => {
     );
 };
 
-Category.propTypes = {
-    
-};
 
 export default Category;

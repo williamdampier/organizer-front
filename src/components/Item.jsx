@@ -1,16 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Item = props => {
     return (
-        <div>
-            
+        <div classname="item-card">
+            Item Sample
         </div>
     );
 };
 
-Item.propTypes = {
-    
-};
 
 export default Item;
