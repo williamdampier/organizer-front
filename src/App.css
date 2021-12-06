@@ -39,9 +39,25 @@ header {
  h2 {
     font-family: 'Gwendolyn', cursive;
   }
-  
+
 .logo {
     width: 32px;
     margin-right: 10px;
     
+}
+
+.item-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    font-family: var(--common-font);
+    border: 1px solid var(--secondary-color);
+
+}
+
+.icon {
+    width: 16px;
+    margin-right: 5px;
 }
