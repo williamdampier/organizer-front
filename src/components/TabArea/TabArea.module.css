@@ -1,0 +1,11 @@
+.TabArea {
+    display: flex;
+
+    margin: 5px;
+    padding: 5px;
+    margin: auto;
+    height: auto;
+    border: 2px dotted var(--secondary-color);;
+
+   
+}

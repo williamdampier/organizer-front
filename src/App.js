@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
-import Organizer from "./components/Organizer";
+import Footer from "./components/Footer";
+import Organizer from "./components/Organizer/Organizer";
 import './App.css';
 
 
@@ -11,6 +12,7 @@ function App() {
     <div>
     <Header/>
     <Organizer/>
+    <Footer/>
     </div>
     
   );

@@ -1,0 +1,11 @@
+.organizer {
+
+
+    margin: auto;
+    height: auto;
+    width: 90%;
+    border: solid 3px var(--primary-color);
+    position: relative;
+   
+   
+}

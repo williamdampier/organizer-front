@@ -1,0 +1,7 @@
+.large_header {
+    font-family: var(--common-font);
+    font-weight: 100;
+    margin-left: 10px;
+    font-size: 1.5rem;
+    color: black;
+}
