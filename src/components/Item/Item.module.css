@@ -1,0 +1,14 @@
+.item {
+    border: 1px solid teal;
+    border-radius: 2px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    width: 30px;
+    align-self: center;
+}
