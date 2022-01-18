@@ -7,14 +7,17 @@ import './App.css';
 import { Context } from "./Context.js";
 
 
+
 function App() {
   const [mainPage, setMainPage] = useState(1);
 
   return (
     <Context.Provider value={[mainPage, setMainPage]}>
     <div>
+   
       <Header/>
       <Organizer/>
+      
       <Footer/>
     </div>
     </Context.Provider>

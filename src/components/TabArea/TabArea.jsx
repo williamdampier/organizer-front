@@ -13,7 +13,7 @@ const TabArea = (props) => {
         axios.get(SECTION_URL).then((response) => {
             setSections(response.data)
         })
-
+        
 
     },[])
 

@@ -4,12 +4,15 @@ import CategoryArea from '../CategoryArea/CategoryArea';
 import TabArea from '../TabArea/TabArea';
 import styles from './Organizer.module.css';
 import {Context} from "../../Context.js"
+import MyModal from '../UI/MyModal/MyModal';
+import NewItem from '../Forms/Item/NewItem';
 const BASE_URL = process.env.REACT_APP_BASE_URL + "/category";
 
 const Organizer = (props) => {
   const [page] = useContext(Context);
   const [categories, setCategories] = useState([]);
   const [status, setStatus] = useState("")
+  const [modal, setModal] = useState(false)
   
   React.useEffect(() => {
     
@@ -21,9 +24,15 @@ const Organizer = (props) => {
     })
 },[page]);
 
+const showModal = () => {setModal(true)}  
 
     return (
         <div className={styles.organizer}>
+        <MyModal 
+          visible={modal}
+          setVisible={setModal}>
+            <NewItem/>
+          </MyModal>
           <TabArea/>
           { categories.length === 0 
             ? 
@@ -33,6 +42,8 @@ const Organizer = (props) => {
               <CategoryArea
                 key={category.id}
                 title={category.title}
+                id={category.id}
+                showModal={showModal}
               />)
           }
           
