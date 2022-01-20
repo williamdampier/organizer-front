@@ -1,19 +1,7 @@
 .section {
     margin: 5px;
 }
-.triangle_topright {
-	width: 0;
-	height: 0;
-	border-top: 40px solid var(--secondary-color);
-	border-left: 100px solid transparent;
-}
 
-.triangle_topleft {
-	width: 0;
-	height: 0;
-	border-top: 40px solid var(--secondary-color);
-	border-right: 100px solid transparent;
-}
 
 .square {
     display: flex;

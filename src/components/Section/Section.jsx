@@ -14,10 +14,7 @@ const Section = (props) => {
                     text={props.title}
                 />
             </div>
-            <div className={styles.align}>
-                <div className={styles.triangle_topleft}></div>
-                <div className={styles.triangle_topright}></div>
-            </div>
+            
         </div>
     );
 };

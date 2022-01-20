@@ -13,9 +13,11 @@ const Organizer = (props) => {
   const [categories, setCategories] = useState([]);
   const [status, setStatus] = useState("")
   const [modal, setModal] = useState(false)
+  const [option, setOption] = useState("");
   
+
   React.useEffect(() => {
-    
+    setOption("section")
     let sourceURL = BASE_URL + "?section=" + page;
     axios.get(sourceURL).then((response) => {
       setCategories([]);
@@ -24,14 +26,21 @@ const Organizer = (props) => {
     })
 },[page]);
 
-const showModal = () => {setModal(true)}  
+const showModal = () => {
+ 
+  
+  setModal(true)
+}  
 
     return (
         <div className={styles.organizer}>
         <MyModal 
           visible={modal}
-          setVisible={setModal}>
-            <NewItem/>
+          setVisible={setModal}
+          >
+            <NewItem
+              option={option}
+            />
           </MyModal>
           <TabArea/>
           { categories.length === 0 
@@ -43,6 +52,7 @@ const showModal = () => {setModal(true)}
                 key={category.id}
                 title={category.title}
                 id={category.id}
+             
                 showModal={showModal}
               />)
           }

@@ -41,7 +41,7 @@ const CategoryArea = ({title, id, showModal }) => {
                 />
             })
           }
-          <input type="button" value="Add Item" onClick={showModal}/>
+          <input type="button" value="Add Item" onClick={() => showModal("item")}/>
             
             
         </div>
