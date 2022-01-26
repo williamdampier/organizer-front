@@ -3,13 +3,12 @@ import Item from "../Item/Item"
 
 import styles from "./CategoryArea.module.css"
 import axios from 'axios';
-import NewItemButton from '../UI/NewItemButton/NewItemButton';
 
 
 
 let BASE_URL = process.env.REACT_APP_BASE_URL + "/item?category=";
 
-const CategoryArea = ({title, id, showModal }) => {
+const CategoryArea = ({title, id, showModal, children }) => {
     const [items, setItems] = useState([]);
     const [status, setStatus] = useState("")
     
@@ -23,9 +22,7 @@ const CategoryArea = ({title, id, showModal }) => {
         })
     },[id]);
     
-    const callModal = (caller) => {
-     showModal(caller)
-    }
+   
 
     return (
         <div className={styles.section}>
@@ -45,7 +42,7 @@ const CategoryArea = ({title, id, showModal }) => {
                 />
             })
           }
-          <NewItemButton option="item" callModal={callModal}/>
+          {children}
             
             
         </div>

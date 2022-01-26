@@ -6,6 +6,7 @@ import styles from './Organizer.module.css';
 import {Context} from "../../Context.js"
 import MyModal from '../UI/MyModal/MyModal';
 import NewItemButton from '../UI/NewItemButton/NewItemButton';
+import NewItem from '../Forms/Item/NewItem';
 const BASE_URL = process.env.REACT_APP_BASE_URL + "/category";
 
 const Organizer = (props) => {
@@ -25,14 +26,15 @@ const Organizer = (props) => {
     })
 },[page]);
 
-const showModal = (itemType, category_id) => {
-  setOption({type:itemType, category_id: category_id})
-  setModal(true)
-  
-}  
 
-const callModal = (caller, category_id = null) => {
-  showModal(caller, category_id)
+
+const callModal = (caller, category_id ) => {
+  
+  setOption({type:caller, category_id: category_id})
+ 
+  setModal(true)
+
+  
  }
 
 const exitModal = () => { setOption("")}
@@ -41,16 +43,19 @@ const exitModal = () => { setOption("")}
     return (
         <div className={styles.organizer}>
         <MyModal 
-          visible={modal}
-          choice={option.type}
-          category_id={option.category_id}
+          visible={modal}      
           setVisible={setModal} 
           clearModal={exitModal}   
-          />
+        >
+          <NewItem
+              choice={option.type}
+              category_id={option.category_id}
+            />
+          </MyModal>
            
          
           <TabArea
-            showModal={showModal}
+            showModal={callModal}
           />
           { categories.length === 0 
             ? 
@@ -61,8 +66,8 @@ const exitModal = () => { setOption("")}
                 key={category.id}
                 title={category.title}
                 id={category.id}
-                showModal={showModal}
-              />
+                showModal={callModal}
+              ><NewItemButton option="item" category_id={category.id} callModal={callModal}/></CategoryArea>
               
          
               ) }

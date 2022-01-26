@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import NewItem from '../../Forms/Item/NewItem';
+import React from 'react';
 import styles from './MyModal.module.css'
 
-const MyModal = ({choice, visible, setVisible, clearModal, category_id}) =>{
+const MyModal = ({choice, visible, setVisible, clearModal, children}) =>{
     const rootClass = [styles.MyModal];
-    const [option, setOption] = useState("")
 
-
-    useEffect(() => {
-        setOption(choice)
-    },[choice])
     if (visible) {rootClass.push(styles.active)}
     
     
@@ -17,10 +11,7 @@ const MyModal = ({choice, visible, setVisible, clearModal, category_id}) =>{
     return (
         <div className={rootClass.join(' ')} onClick={() => {clearModal(); setVisible(false) }}>
             <div className={styles.MyModalContent} onClick={(e) => e.stopPropagation() }>
-            <NewItem
-              choice={option}
-              category={category_id}
-            />
+            {children}
             </div>
            
         </div>

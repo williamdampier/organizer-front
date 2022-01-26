@@ -25,7 +25,7 @@ const NewItem = ({choice, category_id}) => {
         })    
     },[choice, category_id])
 
-    axios.get(BASE_URL + "category").then((response) => console.log(response.data));
+    
    
    function handleTitleInput(e) {
     setNewItem({...newItem, title: e.target.value})
@@ -42,7 +42,7 @@ const NewItem = ({choice, category_id}) => {
  
    }
     function createElement(e) {
-        e.preventDefault();
+        
         if (option === "section") {
             axios.post(BASE_URL + option, {title: newItem.title})
             .then((response) => console.log(response))
