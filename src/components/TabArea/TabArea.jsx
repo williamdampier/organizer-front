@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Section from '../Section/Section';
 import axios from 'axios';
 import styles from './TabArea.module.css'
+import NewItemButton from '../UI/NewItemButton/NewItemButton';
 
 const SECTION_URL = process.env.REACT_APP_BASE_URL + "/section";
 
-const TabArea = (props) => {
+const TabArea = ({showModal}) => {
     const [sections, setSections] = useState([]);
     
 
@@ -17,6 +18,9 @@ const TabArea = (props) => {
 
     },[])
 
+    const callModal = (caller) => {
+        showModal(caller)
+       }
     
 
     return (
@@ -28,6 +32,7 @@ const TabArea = (props) => {
                 title={item.title}
                 id={item.id}
                 />) }
+            <NewItemButton option="section" callModal={callModal}/>
         </div>
     );
 };

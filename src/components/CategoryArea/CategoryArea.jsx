@@ -3,6 +3,7 @@ import Item from "../Item/Item"
 
 import styles from "./CategoryArea.module.css"
 import axios from 'axios';
+import NewItemButton from '../UI/NewItemButton/NewItemButton';
 
 
 
@@ -11,7 +12,7 @@ let BASE_URL = process.env.REACT_APP_BASE_URL + "/item?category=";
 const CategoryArea = ({title, id, showModal }) => {
     const [items, setItems] = useState([]);
     const [status, setStatus] = useState("")
-
+    
     React.useEffect(() => {
     
         let sourceURL = BASE_URL + id;
@@ -22,14 +23,17 @@ const CategoryArea = ({title, id, showModal }) => {
         })
     },[id]);
     
-    
+    const callModal = (caller) => {
+     showModal(caller)
+    }
+
     return (
         <div className={styles.section}>
           
             <div className={styles.header}>{title}</div>
             { items.length === 0 
             ? 
-              <h3>{status}</h3>
+              <h3 style={{"align-self": "center"}}>{status}</h3>
             :
             items.map((item) => {
                 return <Item
@@ -41,7 +45,7 @@ const CategoryArea = ({title, id, showModal }) => {
                 />
             })
           }
-          <input type="button" value="Add Item" onClick={() => showModal("item")}/>
+          <NewItemButton option="item" callModal={callModal}/>
             
             
         </div>

@@ -1,5 +1,5 @@
 .item {
-    border: 1px solid teal;
+    border: 1px solid var(--primary-color);
     border-radius: 2px;
     padding: 5px;
     margin: 5px;
@@ -8,6 +8,7 @@
     align-items: center;
     align-self: center;
     line-height: 1.5;
+    font-family: var(--header-font);
 }
 
 .icon {

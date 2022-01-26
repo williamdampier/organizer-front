@@ -5,7 +5,7 @@ import TabArea from '../TabArea/TabArea';
 import styles from './Organizer.module.css';
 import {Context} from "../../Context.js"
 import MyModal from '../UI/MyModal/MyModal';
-import NewItem from '../Forms/Item/NewItem';
+import NewItemButton from '../UI/NewItemButton/NewItemButton';
 const BASE_URL = process.env.REACT_APP_BASE_URL + "/category";
 
 const Organizer = (props) => {
@@ -17,7 +17,6 @@ const Organizer = (props) => {
   
 
   React.useEffect(() => {
-    setOption("section")
     let sourceURL = BASE_URL + "?section=" + page;
     axios.get(sourceURL).then((response) => {
       setCategories([]);
@@ -26,23 +25,34 @@ const Organizer = (props) => {
     })
 },[page]);
 
-const showModal = () => {
- 
-  
+const showModal = (itemChoice) => {
+ console.log(itemChoice);
+  setOption(itemChoice)
   setModal(true)
+  
 }  
+
+const callModal = (caller) => {
+  showModal(caller)
+ }
+
+const exitModal = () => { setOption("")}
+
 
     return (
         <div className={styles.organizer}>
         <MyModal 
           visible={modal}
-          setVisible={setModal}
-          >
-            <NewItem
-              option={option}
-            />
-          </MyModal>
-          <TabArea/>
+          choice={option}
+          setVisible={setModal} 
+          clearModal={exitModal}
+          
+          />
+           
+         
+          <TabArea
+            showModal={showModal}
+          />
           { categories.length === 0 
             ? 
               <h3>{status}</h3>
@@ -52,10 +62,10 @@ const showModal = () => {
                 key={category.id}
                 title={category.title}
                 id={category.id}
-             
                 showModal={showModal}
               />)
           }
+          <NewItemButton option="category" callModal={callModal}/>
           
        
         </div>

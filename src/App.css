@@ -3,8 +3,9 @@
 :root {
     --header-font: 'IBM Plex Serif', serif;
     --common-font: 'Lobster';
-    --body-color: #A2D2FF;
-    --primary-color: #FEF9EF;
+
+    --body-color:  #FEF9EF;
+    --primary-color: #A2D2FF;
     --secondary-color: #FF865E;
     --footer-color: #FEE440;
 }

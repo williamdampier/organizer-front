@@ -1,22 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState, useContext } from 'react';
 import {Context} from "../../../Context.js"
-import getSections from '../../../utils/getSections.js';
 import styles from "./NewItem.module.css"
 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const NewItem = (props) => {
-    const [option, setOption] = useState("section");
+const NewItem = ({choice}) => {
+    const [option, setOption] = useState("");
     const [categories, setCategories] = useState([]);
     const [sections, setSections] = useState([]);
     const [page] = useContext(Context);
-
-    
-
+ 
    useEffect(() => {
-        setOption(props.option);
+        setOption(choice)
         axios.get(BASE_URL + "/section").then((response) => {
             setSections(response.data)
         })
@@ -24,12 +21,12 @@ const NewItem = (props) => {
             setCategories(response.data)
         })    
 
-    },[props.option])
+    },[choice])
    
-  
+   
 
     function createElement() {
-        console.log(`creating ${option}`);
+
         // axios.post(BASE_URL + "/" + option, item)
     }
 
@@ -40,30 +37,30 @@ const NewItem = (props) => {
             <input 
                 type="radio" 
                 id="section_option" 
-                name="item_option" 
-                value="section" 
-                onChange={()=>setOption("section")} 
-                defaultChecked={option === "section"}
-            />            
+                value="section"   
+                checked={option === "section"}    
+                onChange={()=>setOption("section")}   
+                
+            />        
+
             <label htmlFor="section_option">Section</label>
 
             <input 
                 type="radio" 
                 id="category_option" 
-                name="item_option" 
-                value="category" 
+                value="category"   
+                checked={option === "category"}  
                 onChange={()=>setOption("category")}  
-                defaultChecked={option === "category"}                 
+                                                
             />
             <label htmlFor="category_option">Category</label>
 
             <input 
                 type="radio" 
                 id="item_option" 
-                name="item_option" 
                 value="item" 
-                onChange={()=>setOption("item")}
-                defaultChecked={option === "item"}  
+                checked={option === "item"}  
+                onChange={()=>setOption("item")}       
             />
             <label htmlFor="Item">Item</label>
 
@@ -79,7 +76,7 @@ const NewItem = (props) => {
 
                 <h3>Section: </h3>
                 <label htmlFor="sections">Choose a section:</label>
-                    <select name="cars" id="sections">
+                    <select name="sections" id="sections">
                         <optgroup label="Sections">
                             {sections.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
                         </optgroup>
