@@ -7,52 +7,70 @@ import styles from "./NewItem.module.css"
 const BASE_URL = process.env.REACT_APP_BASE_URL + "/";
 console.log(BASE_URL);
 
-const NewItem = ({choice}) => {
+const NewItem = ({choice, category_id}) => {
     const [option, setOption] = useState("");
     const [categories, setCategories] = useState([]);
     const [sections, setSections] = useState([]);
     const [page] = useContext(Context);
     const [newItem, setNewItem] = useState({});
-    const [myTitle, setTitle] = useState("");
-    console.log(page);
-    const [chosenSection, setChosenSection] = useState(page);
-    const [chosenCategory, setChosenCategory] = useState("");
     
    useEffect(() => {
         setOption(choice)
-        setChosenSection(page)
+        setNewItem({title: "", section_id: page, category_id: category_id})
         axios.get(BASE_URL + "section").then((response) => {
             setSections(response.data)
         })
         axios.get(BASE_URL + `category?section=${page}`).then((response) => {
             setCategories(response.data)
         })    
-        setChosenSection(sections[0])
-        setChosenCategory(categories[0])
-    },[choice])
+    },[choice, category_id])
+
+    axios.get(BASE_URL + "category").then((response) => console.log(response.data));
    
    function handleTitleInput(e) {
-    setNewItem({title: e.target.value})
+    setNewItem({...newItem, title: e.target.value})
     
    }
 
    function handleSectionInput(e) {
-    setChosenSection(e.target.value)
+    setNewItem({...newItem, section_id: e.target.value})
    }
 
 
    function handleCategoryInput(e) {
-    setChosenCategory(e.target.value)
+    setNewItem({...newItem, category_id: e.target.value})
  
    }
     function createElement(e) {
         e.preventDefault();
         if (option === "section") {
-            axios.post(BASE_URL + option, newItem).then((response) => console.log(response))
+            axios.post(BASE_URL + option, {title: newItem.title})
+            .then((response) => console.log(response))
+            .catch(function (error) {
+                console.log(error);
+              })
         }
-        if (option === "category") {setNewItem({...newItem, "section_id": chosenSection})}
-        if (option === "item") {setNewItem({...newItem, "category_id": chosenCategory})}
-        axios.post(BASE_URL + option, newItem).then((response) => console.log(response))
+
+        if (option === "category") {
+            axios.post(BASE_URL + option, {
+                title: newItem.title, 
+                section_id: newItem.section_id})
+                .then((response) => console.log(response))
+                .catch(function (error) {
+                    console.log(error);
+                  })
+            }
+
+        if (option === "item") {
+            axios.post(BASE_URL + option, {
+                title: newItem.title, 
+                category_id: newItem.category_id})
+                .then((response) => console.log(response))
+                .catch(function (error) {
+                    console.log(error);
+                  })
+            }
+      
     }
 
     return (
@@ -64,10 +82,8 @@ const NewItem = ({choice}) => {
                 id="section_option" 
                 value="section"   
                 checked={option === "section"}    
-                onChange={()=>setOption("section")}   
-                
+                onChange={()=>setOption("section")}       
             />        
-
             <label htmlFor="section_option">Section</label>
 
             <input 
@@ -75,8 +91,7 @@ const NewItem = ({choice}) => {
                 id="category_option" 
                 value="category"   
                 checked={option === "category"}  
-                onChange={()=>setOption("category")}  
-                                                
+                onChange={()=>setOption("category")}                                        
             />
             <label htmlFor="category_option">Category</label>
 

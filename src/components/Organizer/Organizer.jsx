@@ -25,15 +25,14 @@ const Organizer = (props) => {
     })
 },[page]);
 
-const showModal = (itemChoice) => {
- console.log(itemChoice);
-  setOption(itemChoice)
+const showModal = (itemType, category_id) => {
+  setOption({type:itemType, category_id: category_id})
   setModal(true)
   
 }  
 
-const callModal = (caller) => {
-  showModal(caller)
+const callModal = (caller, category_id = null) => {
+  showModal(caller, category_id)
  }
 
 const exitModal = () => { setOption("")}
@@ -43,10 +42,10 @@ const exitModal = () => { setOption("")}
         <div className={styles.organizer}>
         <MyModal 
           visible={modal}
-          choice={option}
+          choice={option.type}
+          category_id={option.category_id}
           setVisible={setModal} 
-          clearModal={exitModal}
-          
+          clearModal={exitModal}   
           />
            
          
@@ -63,10 +62,12 @@ const exitModal = () => { setOption("")}
                 title={category.title}
                 id={category.id}
                 showModal={showModal}
-              />)
-          }
-          <NewItemButton option="category" callModal={callModal}/>
-          
+              />
+              
+         
+              ) }
+              <NewItemButton option="category" callModal={callModal}/>
+              
        
         </div>
     );

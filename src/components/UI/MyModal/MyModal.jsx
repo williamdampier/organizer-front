@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NewItem from '../../Forms/Item/NewItem';
 import styles from './MyModal.module.css'
 
-const MyModal = ({choice, visible, setVisible, clearModal}) =>{
+const MyModal = ({choice, visible, setVisible, clearModal, category_id}) =>{
     const rootClass = [styles.MyModal];
     const [option, setOption] = useState("")
 
@@ -19,6 +19,7 @@ const MyModal = ({choice, visible, setVisible, clearModal}) =>{
             <div className={styles.MyModalContent} onClick={(e) => e.stopPropagation() }>
             <NewItem
               choice={option}
+              category={category_id}
             />
             </div>
            
