@@ -33,7 +33,7 @@ const CategoryArea = ({title, id, showModal }) => {
             <div className={styles.header}>{title}</div>
             { items.length === 0 
             ? 
-              <h3 style={{"align-self": "center"}}>{status}</h3>
+              <h3 style={{"alignSelf": "center"}}>{status}</h3>
             :
             items.map((item) => {
                 return <Item

@@ -1,5 +1,6 @@
 .section {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
     margin: 5px;
@@ -11,4 +12,5 @@
     font-family: var(--header-font);
     font-size: 1.2em;
     margin: 5px;
+    align-self: center;
 }

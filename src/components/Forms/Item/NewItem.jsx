@@ -4,30 +4,55 @@ import {Context} from "../../../Context.js"
 import styles from "./NewItem.module.css"
 
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL + "/";
+console.log(BASE_URL);
 
 const NewItem = ({choice}) => {
     const [option, setOption] = useState("");
     const [categories, setCategories] = useState([]);
     const [sections, setSections] = useState([]);
     const [page] = useContext(Context);
- 
+    const [newItem, setNewItem] = useState({});
+    const [myTitle, setTitle] = useState("");
+    console.log(page);
+    const [chosenSection, setChosenSection] = useState(page);
+    const [chosenCategory, setChosenCategory] = useState("");
+    
    useEffect(() => {
         setOption(choice)
-        axios.get(BASE_URL + "/section").then((response) => {
+        setChosenSection(page)
+        axios.get(BASE_URL + "section").then((response) => {
             setSections(response.data)
         })
-        axios.get(BASE_URL + `/category?section=${page}`).then((response) => {
+        axios.get(BASE_URL + `category?section=${page}`).then((response) => {
             setCategories(response.data)
         })    
-
+        setChosenSection(sections[0])
+        setChosenCategory(categories[0])
     },[choice])
    
-   
+   function handleTitleInput(e) {
+    setNewItem({title: e.target.value})
+    
+   }
 
-    function createElement() {
+   function handleSectionInput(e) {
+    setChosenSection(e.target.value)
+   }
 
-        // axios.post(BASE_URL + "/" + option, item)
+
+   function handleCategoryInput(e) {
+    setChosenCategory(e.target.value)
+ 
+   }
+    function createElement(e) {
+        e.preventDefault();
+        if (option === "section") {
+            axios.post(BASE_URL + option, newItem).then((response) => console.log(response))
+        }
+        if (option === "category") {setNewItem({...newItem, "section_id": chosenSection})}
+        if (option === "item") {setNewItem({...newItem, "category_id": chosenCategory})}
+        axios.post(BASE_URL + option, newItem).then((response) => console.log(response))
     }
 
     return (
@@ -66,9 +91,9 @@ const NewItem = ({choice}) => {
 
             {/* Item >>> Category >>> Section */}
 
-            <form action="submit">    
+            <form onSubmit={createElement}>    
                 <h3>Title: </h3>
-                <input/>
+                <input onChange={handleTitleInput}/>
                 <div 
                     name="Category options" 
                     style={{display: option === "category" ? 'block' : 'none'} }
@@ -76,25 +101,26 @@ const NewItem = ({choice}) => {
 
                 <h3>Section: </h3>
                 <label htmlFor="sections">Choose a section:</label>
-                    <select name="sections" id="sections">
-                        <optgroup label="Sections">
-                            {sections.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
+                    <select name="sections" id="sections" onChange={handleSectionInput}>
+                        <optgroup label="Sections" >
+                            {sections.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                         </optgroup>
+                      
                     </select>
                 </div>
 
                 <div name="Item options" style={{display: option === "item" ? 'block' : 'none'} }>
                 <h3>Category: </h3>
                 <label htmlFor="categories">Choose a section:</label>
-                    <select name="categories" id="categories">
+                    <select name="categories" id="categories" onChange={handleCategoryInput}>
                         <optgroup label="Category: ">
-                                 {categories.map(item => <option key={item.id} value={item.title}>{item.title}</option>)}
+                                 {categories.map(item => <option key={item.id} value={item.id} >{item.title}</option>)}
                         </optgroup>
                     </select>
                 </div>
                 
                 
-                <input type="submit" onClick={() => createElement}/>
+                <input type="submit"/>
             </form>
             
         </div>
