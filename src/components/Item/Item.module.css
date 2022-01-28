@@ -1,5 +1,8 @@
+
+
 .item {
     border: 1px solid var(--primary-color);
+    
     border-radius: 2px;
     padding: 5px;
     margin: 5px;
@@ -9,6 +12,14 @@
     align-self: center;
     line-height: 1.5;
     font-family: var(--header-font);
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    
 }
 
 .icon {

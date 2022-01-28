@@ -1,3 +1,10 @@
 .icon {
     color: #00449F;
 }
+
+.button {
+    display: flex;
+    margin-left: auto;
+    padding: 2px;
+    margin: 2px;
+}
