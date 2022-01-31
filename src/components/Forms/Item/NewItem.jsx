@@ -146,7 +146,7 @@ const NewItem = ({choice, category_id}) => {
                                  {categories.length !== 0 && categories.map(item => <option key={item.id} value={item.id} >{item.title}</option>)}
                         </optgroup>
                     </select>
-                    <h4>Link:</h4>
+                    <h4>Description:</h4>
                 <input onChange={handleDescriptionInput}/>
                     <h4>Link:</h4>
                 <input onChange={handleLinkInput}/>
