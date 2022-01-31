@@ -21,7 +21,7 @@ const NewItem = ({choice, category_id}) => {
             setSections(response.data)
         })
         axios.get(BASE_URL + `category?section=${page}`).then((response) => {
-            setCategories(response.data)
+            (Array.isArray(response.data)) && setCategories(response.data)
         })    
     },[choice, category_id])
 
@@ -143,7 +143,7 @@ const NewItem = ({choice, category_id}) => {
                 <label htmlFor="categories">Choose a section:</label>
                     <select name="categories" id="categories" onChange={handleCategoryInput}>
                         <optgroup label="Category: ">
-                                 {categories.map(item => <option key={item.id} value={item.id} >{item.title}</option>)}
+                                 {categories.length !== 0 && categories.map(item => <option key={item.id} value={item.id} >{item.title}</option>)}
                         </optgroup>
                     </select>
                     <h4>Link:</h4>
