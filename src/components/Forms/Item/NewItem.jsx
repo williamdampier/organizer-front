@@ -16,7 +16,7 @@ const NewItem = ({choice, category_id}) => {
     
    useEffect(() => {
         setOption(choice)
-        setNewItem({title: "", section_id: page, category_id: category_id, link: ''})
+        setNewItem({title: "", section_id: page, category_id: category_id, description: '', link: ''})
         axios.get(BASE_URL + "section").then((response) => {
             setSections(response.data)
         })
@@ -46,6 +46,12 @@ const NewItem = ({choice, category_id}) => {
     setNewItem({...newItem, link: e.target.value})
    }
 
+
+   function handleDescriptionInput(e) {
+    setNewItem({...newItem, description: e.target.value})
+   }
+   
+
     function createElement(e) {
         
         if (option === "section") {
@@ -70,6 +76,7 @@ const NewItem = ({choice, category_id}) => {
             axios.post(BASE_URL + option, {
                 title: newItem.title, 
                 category_id: newItem.category_id,
+                description: newItem.description,
                 link: newItem.link
             })
                 .then((response) => console.log(response))
@@ -139,6 +146,8 @@ const NewItem = ({choice, category_id}) => {
                                  {categories.map(item => <option key={item.id} value={item.id} >{item.title}</option>)}
                         </optgroup>
                     </select>
+                    <h4>Link:</h4>
+                <input onChange={handleDescriptionInput}/>
                     <h4>Link:</h4>
                 <input onChange={handleLinkInput}/>
                 </div>

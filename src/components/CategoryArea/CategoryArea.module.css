@@ -11,6 +11,9 @@
 .header {
     font-family: var(--header-font);
     font-size: 1.2em;
-    margin: 5px;
+    margin: 5px 20px;
     align-self: center;
+    max-width: 15%;
+    
+    padding: 10px;
 }

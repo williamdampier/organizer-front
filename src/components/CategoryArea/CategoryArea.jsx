@@ -32,6 +32,7 @@ const CategoryArea = ({title, id, showModal, children }) => {
               {title}
               <DeleteButton option="category" item_id={id}/>
               </div>
+              
             { items.length === 0 
             ? 
               <h3 style={{"alignSelf": "center"}}>{status}</h3>
