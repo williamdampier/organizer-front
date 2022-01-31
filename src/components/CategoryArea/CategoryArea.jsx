@@ -3,6 +3,7 @@ import Item from "../Item/Item"
 
 import styles from "./CategoryArea.module.css"
 import axios from 'axios';
+import DeleteButton from '../UI/DeleteButton/DeleteButton';
 
 
 
@@ -27,7 +28,10 @@ const CategoryArea = ({title, id, showModal, children }) => {
     return (
         <div className={styles.section}>
           
-            <div className={styles.header}>{title}</div>
+            <div className={styles.header}>
+              {title}
+              <DeleteButton option="category" item_id={id}/>
+              </div>
             { items.length === 0 
             ? 
               <h3 style={{"alignSelf": "center"}}>{status}</h3>

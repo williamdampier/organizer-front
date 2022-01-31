@@ -3,11 +3,13 @@ import Section from '../Section/Section';
 import axios from 'axios';
 import styles from './TabArea.module.css'
 import NewItemButton from '../UI/NewItemButton/NewItemButton';
+import { Tabs } from '@mui/material';
 
 const SECTION_URL = process.env.REACT_APP_BASE_URL + "/section";
 
 const TabArea = ({showModal}) => {
     const [sections, setSections] = useState([]);
+  
     
 
     React.useEffect(() => {
@@ -24,16 +26,31 @@ const TabArea = ({showModal}) => {
     
 
     return (
-        <div className={styles.TabArea}>
+        <div className={styles.TabArea}> 
      
-          {sections.map((item) => 
-            <Section 
-                key={item.id} 
-                title={item.title}
-                id={item.id}
-                />) }
-            <NewItemButton option="section" callModal={callModal}/>
-        </div>
+        <NewItemButton option="section" callModal={callModal}/>
+        
+        <Tabs
+             sx={{'display': 'flex', 'justify-content': 'flex-start'}}
+            >
+            {sections.map((item) => 
+                <Section 
+                    key={item.id} 
+                    label={item.title}
+                    id={item.id}
+                />
+           
+               ) }
+               </Tabs>
+            
+            
+            </div>
+      
+        
+         
+           
+           
+     
     );
 };
 

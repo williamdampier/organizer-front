@@ -1,19 +1,2 @@
-.section {
-    margin: 5px;
-}
 
 
-.square {
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid var(--secondary-color);
-    border-radius: 5px 5px 0 0;
-    background: linear-gradient( rgb(253, 253, 253) 0%,rgb(253, 253, 253) 50%, var(--secondary-color) 97%);
-    height:60px;
-    width:200px;
-}
-
-.align {
-    display: flex;
-    flex-direction: row;
-}

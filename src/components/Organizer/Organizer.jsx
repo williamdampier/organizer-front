@@ -7,6 +7,7 @@ import {Context} from "../../Context.js"
 import MyModal from '../UI/MyModal/MyModal';
 import NewItemButton from '../UI/NewItemButton/NewItemButton';
 import NewItem from '../Forms/Item/NewItem';
+import { Box } from '@mui/material';
 const BASE_URL = process.env.REACT_APP_BASE_URL + "/category";
 
 const Organizer = (props) => {
@@ -41,7 +42,7 @@ const exitModal = () => { setOption("")}
 
 
     return (
-        <div className={styles.organizer}>
+        <Box className={styles.organizer}>
         <MyModal 
           visible={modal}      
           setVisible={setModal} 
@@ -74,7 +75,7 @@ const exitModal = () => { setOption("")}
               <NewItemButton option="category" callModal={callModal}/>
               
        
-        </div>
+        </Box>
     );
 };
 
